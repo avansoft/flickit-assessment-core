@@ -3,9 +3,7 @@ package org.flickit.flickitassessmentcore.adapter.out.persistence.answer;
 import lombok.RequiredArgsConstructor;
 import org.flickit.flickitassessmentcore.adapter.out.persistence.assessmentresult.AssessmentResultJpaEntity;
 import org.flickit.flickitassessmentcore.adapter.out.persistence.assessmentresult.AssessmentResultJpaRepository;
-import org.flickit.flickitassessmentcore.application.port.out.answer.LoadAnswerIdAndOptionIdByAssessmentResultAndQuestionPort;
-import org.flickit.flickitassessmentcore.application.port.out.answer.SaveAnswerPort;
-import org.flickit.flickitassessmentcore.application.port.out.answer.UpdateAnswerOptionPort;
+import org.flickit.flickitassessmentcore.application.port.out.answer.*;
 import org.flickit.flickitassessmentcore.application.service.exception.ResourceNotFoundException;
 import org.springframework.stereotype.Component;
 
@@ -20,7 +18,9 @@ import static org.flickit.flickitassessmentcore.common.ErrorMessageKey.SUBMIT_AN
 public class AnswerPersistenceJpaAdaptor implements
     SaveAnswerPort,
     UpdateAnswerOptionPort,
-    LoadAnswerIdAndOptionIdByAssessmentResultAndQuestionPort {
+    LoadSubmitAnswerExistAnswerViewByAssessmentResultAndQuestionPort,
+    LoadAnswerIdAndIsNotApplicableByAssessmentResultAndQuestionPort,
+    UpdateAnswerIsNotApplicablePort {
 
     private final AnswerJpaRepository repository;
 
@@ -42,8 +42,19 @@ public class AnswerPersistenceJpaAdaptor implements
     }
 
     @Override
-    public Optional<Result> loadAnswerIdAndOptionId(UUID assessmentResultId, Long questionId) {
+    public Optional<LoadSubmitAnswerExistAnswerViewByAssessmentResultAndQuestionPort.Result> loadView(UUID assessmentResultId, Long questionId) {
         return repository.findByAssessmentResultIdAndQuestionId(assessmentResultId, questionId)
-            .map(x -> new Result(x.getId(), x.getAnswerOptionId()));
+            .map(x -> new LoadSubmitAnswerExistAnswerViewByAssessmentResultAndQuestionPort.Result(x.getId(), x.getAnswerOptionId(), x.getIsNotApplicable()));
+    }
+
+    @Override
+    public void updateAnswerIsNotApplicableAndRemoveOptionById(UpdateAnswerIsNotApplicablePort.Param param) {
+        repository.updateIsNotApplicableAndRemoveOptionIdById(param.id(), param.isNotApplicable());
+    }
+
+    @Override
+    public Optional<LoadAnswerIdAndIsNotApplicableByAssessmentResultAndQuestionPort.Result> loadAnswerIdAndIsNotApplicable(UUID assessmentResultId, Long questionId) {
+        return repository.findByAssessmentResultIdAndQuestionId_(assessmentResultId, questionId)
+            .map(x -> new LoadAnswerIdAndIsNotApplicableByAssessmentResultAndQuestionPort.Result(x.getId(), x.getIsNotApplicable()));
     }
 }

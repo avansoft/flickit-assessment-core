@@ -81,6 +81,35 @@
 			"response": []
 		},
 		{
+			"name": "Submit Answer Is Not Applicable",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"questionId\": 1,\n    \"isNotApplicable\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/{{api_path}}/assessment-results/{{assessment_result_id}}/answer-is-not-applicable",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{api_path}}",
+						"assessment-results",
+						"{{assessment_result_id}}",
+						"answer-is-not-applicable"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Get Assessment List",
 			"protocolProfileBehavior": {
 				"disabledSystemHeaders": {}
