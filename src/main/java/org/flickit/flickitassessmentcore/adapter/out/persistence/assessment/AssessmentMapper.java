@@ -5,6 +5,18 @@ import org.flickit.flickitassessmentcore.domain.Assessment;
 
 public class AssessmentMapper {
 
+    public static AssessmentJpaEntity mapToJpaEntity(Assessment assessment) {
+        return new AssessmentJpaEntity(
+            assessment.getId(),
+            assessment.getCode(),
+            assessment.getTitle(),
+            assessment.getCreationTime(),
+            assessment.getLastModificationDate(),
+            assessment.getAssessmentKitId(),
+            assessment.getColorId(),
+            assessment.getSpaceId());
+    }
+
     static AssessmentJpaEntity mapCreateParamToJpaEntity(CreateAssessmentPort.Param param) {
         return new AssessmentJpaEntity(
             null,

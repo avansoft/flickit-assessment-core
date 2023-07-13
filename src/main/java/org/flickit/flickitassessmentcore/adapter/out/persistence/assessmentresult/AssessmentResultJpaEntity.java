@@ -33,6 +33,10 @@ public class AssessmentResultJpaEntity {
     @Column(name = "is_valid")
     private Boolean isValid;
 
+    public AssessmentResultJpaEntity(UUID resultId) {
+        this.id = resultId;
+    }
+
     @Override
     public String toString() {
         return id.toString();

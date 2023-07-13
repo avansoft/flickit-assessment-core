@@ -19,7 +19,7 @@ public class Evidence {
     private LocalDateTime lastModificationDate;
     private Long createdById;
     private Assessment assessment;
-    private Long questionId;
+    private Question question;
 
     @Override
     public String toString() {

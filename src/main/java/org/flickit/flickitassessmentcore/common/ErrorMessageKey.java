@@ -24,4 +24,8 @@ public class ErrorMessageKey {
     public static final String GET_ASSESSMENT_LIST_SIZE_MIN = "get-assessment-list.size.min";
     public static final String GET_ASSESSMENT_LIST_SIZE_MAX = "get-assessment-list.size.max";
     public static final String GET_ASSESSMENT_LIST_PAGE_MIN = "get-assessment-list.page.min";
+
+    public static final String CALCULATE_MATURITY_LEVEL_ASSESSMENT_ID_NOT_NULL = "calculate-maturity-level.assessment.id.notNull";
+    public static final String CALCULATE_MATURITY_LEVEL_ANSWER_NOT_FOUND_MESSAGE = "calculate-maturity-level.answer.notFound.message";
+    public static final String CALCULATE_MATURITY_LEVEL_MATURITY_LEVEL_NOT_FOUND_MESSAGE = "calculate-maturity-level.maturity-level.notFound.message";
 }

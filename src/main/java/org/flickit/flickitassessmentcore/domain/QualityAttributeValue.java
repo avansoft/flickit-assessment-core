@@ -12,10 +12,14 @@ import java.util.UUID;
 @NoArgsConstructor
 @EqualsAndHashCode
 public class QualityAttributeValue {
+
     private UUID id;
-    private AssessmentResult assessmentResult;
-    private Long qualityAttributeId;
-    private Long maturityLevelId;
+
+    private QualityAttribute qualityAttribute;
+
+    private MaturityLevel maturityLevel;
+
+    private UUID resultId;
 
     @Override
     public String toString() {

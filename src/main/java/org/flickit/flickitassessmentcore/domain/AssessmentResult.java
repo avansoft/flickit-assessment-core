@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -12,10 +13,14 @@ import java.util.UUID;
 @NoArgsConstructor
 @EqualsAndHashCode
 public class AssessmentResult {
+
     private UUID id;
+
     private Assessment assessment;
-    private Long maturityLevelId;
+
     private Boolean isValid;
+
+    private Long maturityLevelId;
 
     @Override
     public String toString() {
